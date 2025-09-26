@@ -85,6 +85,7 @@ func printSpan(span *request.Span) {
 	pn := ""
 	hn := ""
 
+	fmt.Println("client span", span.IsClientSpan())
 	if span.IsClientSpan() {
 		if span.Service.UID.Namespace != "" {
 			pn = "." + span.Service.UID.Namespace

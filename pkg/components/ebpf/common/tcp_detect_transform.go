@@ -38,6 +38,7 @@ func ReadTCPRequestIntoSpan(parseCtx *EBPFParseContext, cfg *config.EBPFTracer, 
 
 	requestBuffer, responseBuffer := getBuffers(parseCtx, event)
 
+	fmt.Println("ProtocolDebug", cfg.ProtocolDebug)
 	if cfg.ProtocolDebug {
 		fmt.Printf("[>] %v\n", requestBuffer)
 		fmt.Printf("[<] %v\n", responseBuffer)

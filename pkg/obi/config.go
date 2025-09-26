@@ -65,12 +65,14 @@ var DefaultConfig = Config{
 	ShutdownTimeout:  10 * time.Second,
 	EnforceSysCaps:   false,
 	EBPF: config.EBPFTracer{
+		BpfDebug:                  true,
+		ProtocolDebug:             true,
 		BatchLength:               100,
 		BatchTimeout:              time.Second,
 		HTTPRequestTimeout:        0,
 		TCBackend:                 tcmanager.TCBackendAuto,
 		ContextPropagationEnabled: false,
-		ContextPropagation:        config.ContextPropagationDisabled,
+		ContextPropagation:        config.ContextPropagationAll,
 		RedisDBCache: config.RedisDBCacheConfig{
 			Enabled: false,
 			MaxSize: 1000,

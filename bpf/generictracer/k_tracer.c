@@ -309,6 +309,19 @@ tcp_send_ssl_check(u64 id, void *ssl, pid_connection_info_t *p_conn, u16 orig_dp
     bpf_map_update_elem(&ssl_to_conn, &ssl, &ssl_conn, BPF_ANY);
 }
 
+// support udp dns packet
+SEC("kprobe/udp_sendmsg")
+int BPF_KPROBE(obi_kprobe_udp_sendmsg, struct sock *sk, struct msghdr *msg, size_t size) {
+    bpf_printk("udp_sendmsg");
+    u64 id = bpf_get_current_pid_tgid();
+    if (!valid_pid(id)) {
+        return 0;
+    }
+    bpf_dbg_printk("=== kprobe udp_sendmsg=%d sock=%llx size %d===", id, sk, size);
+
+    return 0;
+}
+
 // Main HTTP read and write operations are handled with tcp_sendmsg and tcp_recvmsg
 
 // The size argument here will be always the total response size.

@@ -1,0 +1,8 @@
+otel_metrics_export: { features: [network,application] }
+prometheus_export: { features: [network,application] }
+open_port: 8080
+trace_printer: text
+log_level: debug
+ebpf:
+  bpf_debug: true
+  protocol_debug_print: true 
