@@ -836,6 +836,13 @@ int obi_uprobe_http2serverConn_runHandler(struct pt_regs *ctx) {
     return 0;
 }
 
+SEC("uprobe/dns_LookupIP")
+int obi_uprobe_dns_LookupIP(struct pt_regs *ctx) {
+    bpf_dbg_printk("=== uprobe/proc obi_uprobe_dns_LookupIP === ");
+
+    return 0;
+}
+
 // HTTP 2.0 client support
 #ifndef NO_HEADER_PROPAGATION
 struct {

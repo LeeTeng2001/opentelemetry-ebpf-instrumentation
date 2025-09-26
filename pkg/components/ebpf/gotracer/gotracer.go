@@ -289,6 +289,9 @@ func (p *Tracer) GoProbes() map[string][]*ebpfcommon.ProbeDesc {
 		"net/http.(*http2serverConn).runHandler": {{
 			Start: p.bpfObjects.ObiUprobeHttp2serverConnRunHandler, // http2 server connection tracking, vendored in go
 		}},
+		"net/LookupIP": {{
+			Start: p.bpfObjects.ObiUprobeDnsLookupIP, // dns lookup, vendored in go
+		}},
 		"golang.org/x/net/http2.(*serverConn).processHeaders": {{
 			Start: p.bpfObjects.ObiUprobeHttp2ServerProcessHeaders, // http2 server request header parsing
 		}},
